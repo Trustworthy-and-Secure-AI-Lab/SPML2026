@@ -6,7 +6,7 @@
   <title>Security and Privacy in ML</title>
   <style>
     body {
-      max-width: 1000px;
+      max-width: 1200px;
       margin: 50px auto;
       padding: 0 20px;
       font-family: system-ui, sans-serif;
@@ -15,11 +15,13 @@
     }
     h1, h2 { color: #153e75; }
     a { color: #0369a1; }
+    .table-wrapper { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; }
     th, td {
       padding: 10px;
       border: 1px solid #d1d5db;
       text-align: left;
+      vertical-align: top;
     }
     th { background: #eff6ff; }
   </style>
@@ -52,42 +54,287 @@
 
   <h2>Schedule</h2>
   <p>Provisional schedule; updates will appear here.</p>
-  <table>
-    <thead>
-      <tr>
-        <th>Week</th>
-        <th>Topic</th>
-        <th>Materials</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td>Introduction and Threat Models</td>
-        <td>To be posted</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Adversarial Examples</td>
-        <td>To be posted</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Data Poisoning and Backdoor Attacks</td>
-        <td>To be posted</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>Membership Inference and Model Inversion</td>
-        <td>To be posted</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td>Differential Privacy</td>
-        <td>To be posted</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Day</th>
+          <th scope="col">Topic</th>
+          <th scope="col">Lecture</th>
+          <th scope="col">Reading</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Oct 25 (3 Aban)</td>
+          <td>Sunday</td>
+          <td>Course Intro &amp; Overview</td>
+          <td>Course Scope, Principles &amp; Motivation</td>
+          <td>Towards the Science of Security and Privacy in ML (Papernot et al.)</td>
+        </tr>
+        <tr>
+          <td>Oct 27 (5 Aban)</td>
+          <td>Tuesday</td>
+          <td>Adversarial Examples Intro</td>
+          <td>Vulnerabilities of Deep Learning &amp; Threat Models</td>
+          <td>
+            Intriguing Properties of Neural Networks (Szegedy et al.)<br>
+            Explaining and Harnessing Adversarial Examples (Goodfellow et al.)
+          </td>
+        </tr>
+        <tr>
+          <td>Nov 01 (10 Aban)</td>
+          <td>Sunday</td>
+          <td>Iterative Adversarial Attacks</td>
+          <td>Projected Gradient Descent (PGD) &amp; Carlini-Wagner (C&amp;W) Attack Formulations</td>
+          <td>
+            Towards Deep Learning Models Resistant to Adversarial Attacks (Madry et al.)<br>
+            Towards Evaluating the Robustness of Neural Networks (Carlini &amp; Wagner)
+          </td>
+        </tr>
+        <tr>
+          <td>Nov 03 (12 Aban)</td>
+          <td>Tuesday</td>
+          <td>Physical &amp; Universal Attacks</td>
+          <td>Universal Adversarial Perturbations &amp; Adversarial Patches</td>
+          <td>
+            Universal Adversarial Perturbations;<br>
+            Adversarial Patch (Brown et al.)
+          </td>
+        </tr>
+        <tr>
+          <td>Nov 08 (17 Aban)</td>
+          <td>Sunday</td>
+          <td>Black-Box Adversarial Attacks</td>
+          <td>Transferability, Query-Based Attacks &amp; Zeroth-Order Optimization</td>
+          <td>
+            Practical Black-Box Attacks;<br>
+            ZOO (Chen et al.)<br>
+            Black-box Adversarial Attacks with Limited Queries and Information
+          </td>
+        </tr>
+        <tr>
+          <td>Nov 10 (19 Aban)</td>
+          <td>Tuesday</td>
+          <td>Obfuscated Gradients &amp; Empirical Defenses Against AEs</td>
+          <td>Gradient Masking &amp; Rigorous Robustness Evaluation</td>
+          <td>
+            Obfuscated Gradients Give a False Sense of Security (Athalye et al.)<br>
+            Towards Deep Learning Models Resistant to Adversarial Attacks
+          </td>
+        </tr>
+        <tr>
+          <td>Nov 15 (24 Aban)</td>
+          <td>Sunday</td>
+          <td>Certified Robustness</td>
+          <td>Randomized Smoothing &amp; Convex Outer Adversarial Polytope</td>
+          <td>Certified Adversarial Robustness via Randomized Smoothing (Cohen et al.)</td>
+        </tr>
+        <tr>
+          <td>Nov 17 (26 Aban)</td>
+          <td>Tuesday</td>
+          <td>Data Poisoning Attacks</td>
+          <td>Targeted Clean-Label Poisoning &amp; Bilevel Optimization</td>
+          <td>
+            BadNets (Gu et al.);<br>
+            Poison Frogs! Targeted Clean-Label Poisoning Attacks (Shafahi et al.)<br>
+            Deep Partition Aggregation (Levine &amp; Feizi)<br>
+            Poisoning the Unlabeled Dataset of Semi-Supervised Learning (Carlini, 2021)
+          </td>
+        </tr>
+        <tr>
+          <td>Nov 22 (1 Azar)</td>
+          <td>Sunday</td>
+          <td>Model Extraction Attacks &amp; Model IP &amp; Watermarking</td>
+          <td>Model Fingerprinting, Watermarking &amp; Verification</td>
+          <td>
+            High Accuracy and High Fidelity Extraction;<br>
+            Knockoff Nets (Orekondy et al.)<br>
+            Turning Weakness Into Strength: Watermarking DNNs by Backdooring<br>
+            Imitation Attacks and Defenses for Black-box Machine Translation Systems (Wallace et al., 2020)<br>
+            Stealing Part of a Production Language Model (Carlini et al., 2024)
+          </td>
+        </tr>
+        <tr>
+          <td>Nov 24 (3 Azar)</td>
+          <td>Tuesday</td>
+          <td>Privacy Risks in ML</td>
+          <td>Membership Inference &amp; Attribute Inference Attacks</td>
+          <td>Membership Inference Attacks against Machine Learning Models (Shokri et al.)</td>
+        </tr>
+        <tr>
+          <td>Nov 29 (8 Azar)</td>
+          <td>Sunday</td>
+          <td>Federated Learning &amp; Gradient Leakage</td>
+          <td>Membership Inference &amp; Attribute Inference Attacks</td>
+          <td>Membership Inference Attacks From First Principles (Carlini et al., 2021)</td>
+        </tr>
+        <tr>
+          <td>Dec 01 (10 Azar)</td>
+          <td>Tuesday</td>
+          <td>Differential Privacy Foundations</td>
+          <td>(ε, δ)-Differential Privacy &amp; Randomized Response</td>
+          <td>The Algorithmic Foundations of Differential Privacy (Dwork &amp; Roth)</td>
+        </tr>
+        <tr>
+          <td>Dec 06 (15 Azar)</td>
+          <td>Sunday</td>
+          <td>Differential Privacy Mechanisms</td>
+          <td>Laplace, Gaussian Mechanisms &amp; Composition Theorems</td>
+          <td>
+            The Algorithmic Foundations of Differential Privacy;<br>
+            Renyi DP (Mironov)
+          </td>
+        </tr>
+        <tr>
+          <td>Dec 08 (17 Azar)</td>
+          <td>Tuesday</td>
+          <td>Private Deep Learning</td>
+          <td>DP-SGD &amp; PATE (Private Aggregation of Teacher Ensembles)</td>
+          <td>
+            Deep Learning with DP (Abadi et al.);<br>
+            Semi-supervised Transfer (Papernot et al.)
+          </td>
+        </tr>
+        <tr>
+          <td>Dec 13 (22 Azar)</td>
+          <td>Sunday</td>
+          <td>Introduction to Large Language models and Alignment</td>
+          <td>Autoregressive Language Modeling, Pretraining, In-Context Learning &amp; Alignment Objectives</td>
+          <td>
+            Language Models are Few-Shot Learners (Brown et al., 2020)<br>
+            Training language models to follow instructions with human feedback (Ouyang et al., 2022)
+          </td>
+        </tr>
+        <tr>
+          <td>Dec 15 (24 Azar)</td>
+          <td>Tuesday</td>
+          <td>RLHF</td>
+          <td>Supervised Fine-Tuning, Preference-Based Reward Modeling &amp; KL-Regularized Policy Optimization</td>
+          <td>
+            Fine-Tuning Language Models from Human Preferences (Ziegler et al., 2019)<br>
+            Training language models to follow instructions with human feedback (Ouyang et al., 2022)
+          </td>
+        </tr>
+        <tr>
+          <td>Dec 20 (29 Azar)</td>
+          <td>Sunday</td>
+          <td>LLM safety alignment and jailbreaking</td>
+          <td>Safety Training, Refusal Behavior &amp; Transferable Adversarial Prompts</td>
+          <td>
+            Jailbroken: How Does LLM Safety Training Fail? (Wei et al., 2023)<br>
+            Universal and Transferable Adversarial Attacks on Aligned Language Models (Zou et al., 2023)<br>
+            <strong>Recommended:</strong><br>
+            Are aligned neural networks adversarially aligned? (Carlini et al., 2023)<br>
+            AutoPrompt: Eliciting Knowledge from Language Models with Automatically Generated Prompts
+          </td>
+        </tr>
+        <tr>
+          <td>Dec 22 (1 Dey)</td>
+          <td>Tuesday</td>
+          <td>LLM Red-teaming</td>
+          <td>Automated Attack Search, Adaptive Multi-Turn Jailbreaks &amp; Red-Teaming Evaluation</td>
+          <td>
+            Tree of Attacks: Jailbreaking Black-Box LLMs Automatically<br>
+            X-Teaming: Multi-Turn Jailbreaks and Defenses with Adaptive Multi-Agents
+          </td>
+        </tr>
+        <tr>
+          <td>Dec 27 (6 Dey)</td>
+          <td>Sunday</td>
+          <td>Agentic AI</td>
+          <td>Reasoning–Action Loops, Tool Use, Planning, Memory &amp; Verbal Feedback</td>
+          <td>
+            ReAct: Synergizing Reasoning and Acting in Language Models<br>
+            Toolformer: LMs Can Teach Themselves to Use Tools -- Generative Agents: Interactive Simulacra of Human Behavior<br>
+            Reflexion: Language Agents with Verbal RL
+          </td>
+        </tr>
+        <tr>
+          <td>Dec 29 (8 Dey)</td>
+          <td>Tuesday</td>
+          <td>Threat Modeling</td>
+          <td>Agent Assets, Trust Boundaries, Attacker Capabilities &amp; Security Evaluation</td>
+          <td>
+            Agent Security Bench (ASB)<br>
+            Identifying the Risks of LM Agents with an LM-Emulated Sandbox (ToolEmu) -- AgentHarm: Measuring Harmfulness of LLM Agents<br>
+            Attacking Vision-Language Computer Agents via Pop-ups
+          </td>
+        </tr>
+        <tr>
+          <td>Jan 03 (13 Dey)</td>
+          <td>Sunday</td>
+          <td>Prompt Injection I</td>
+          <td>Direct &amp; Indirect Prompt Injection, Instruction–Data Confusion &amp; Attack Surfaces</td>
+          <td>
+            Not What You've Signed Up For: Indirect Prompt Injection<br>
+            Formalizing and Benchmarking Prompt Injection Attacks and Defenses
+          </td>
+        </tr>
+        <tr>
+          <td>Jan 05 (15 Dey)</td>
+          <td>Tuesday</td>
+          <td>Prompt Injection II</td>
+          <td>Tool-Integrated Injection Attacks, Adaptive Adversaries &amp; Benchmark-Based Evaluation</td>
+          <td>
+            InjecAgent: Benchmarking Indirect Prompt Injections in Tool-Integrated Agents<br>
+            AgentDojo: A Dynamic Environment to Evaluate Attacks and Defenses
+          </td>
+        </tr>
+        <tr>
+          <td>Jan 10 (20 Dey)</td>
+          <td>Sunday</td>
+          <td>Poisoning Memory, State, and Persistent Attacks</td>
+          <td>Memory &amp; Knowledge-Base Poisoning, Agent Backdoors &amp; Cross-Session Persistence</td>
+          <td>
+            AgentPoison: Red-Teaming LLM Agents via Poisoning Memory or Knowledge Bases<br>
+            Watch Out for Your Agents! Backdoor Threats to LLM-Based Agents
+          </td>
+        </tr>
+        <tr>
+          <td>Jan 12 (22 Dey)</td>
+          <td>Tuesday</td>
+          <td>Tools, Privileges, and Authorization</td>
+          <td>Tool-Interface Threats, Least Privilege, Authorization Boundaries &amp; Capability-Based Controls</td>
+          <td>
+            Model Context Protocol (MCP): Landscape and Security Threats<br>
+            Defeating Prompt Injections by Design (CaMeL)
+          </td>
+        </tr>
+        <tr>
+          <td>Jan 17 (27 Dey)</td>
+          <td>Sunday</td>
+          <td>Multi-Agent Security</td>
+          <td>Attack Propagation, Compromised Agents &amp; Resilient Multi-Agent Collaboration</td>
+          <td>
+            Agent Smith: A Single Image Can Jailbreak One Million Multimodal Agents<br>
+            On the Resilience of LLM-Based Multi-Agent Collaboration with Faulty Agents
+          </td>
+        </tr>
+        <tr>
+          <td>Jan 19 (29 Dey)</td>
+          <td>Tuesday</td>
+          <td>Defenses I: Architecture</td>
+          <td>Execution Isolation, Trust Separation &amp; Communication Firewalls</td>
+          <td>
+            IsolateGPT: An Execution Isolation Architecture for LLM-Based Agentic Systems<br>
+            Firewalls to Secure Dynamic LLM Agentic Networks
+          </td>
+        </tr>
+        <tr>
+          <td>Jan 26 (6 Bahman)</td>
+          <td>Tuesday</td>
+          <td>Defenses II: Model and Runtime</td>
+          <td>Structured Queries, Security Preference Optimization &amp; Runtime Enforcement</td>
+          <td>
+            StruQ: Defending Against Prompt Injection with Structured Queries<br>
+            SecAlign: Defending Against Prompt Injection with Preference Optimization
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <h2>Assignments</h2>
   <p>Assignments and deadlines will be posted here.</p>
