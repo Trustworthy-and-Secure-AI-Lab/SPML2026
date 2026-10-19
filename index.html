@@ -1,55 +1,156 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Security and Privacy in ML</title>
-  <style>
-    body {
-      max-width: 1200px;
-      margin: 50px auto;
-      padding: 0 20px;
-      font-family: system-ui, sans-serif;
-      line-height: 1.7;
-      color: #1f2937;
-    }
-    h1, h2 { color: #153e75; }
-    a { color: #0369a1; }
-    .table-wrapper { overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td {
-      padding: 10px;
-      border: 1px solid #d1d5db;
-      text-align: left;
-      vertical-align: top;
-    }
-    th { background: #eff6ff; }
-  </style>
-</head>
-<body>
-  <nav>
-    <a href="https://trustworthy-and-secure-ai-lab.github.io/">
-      Lab website
-    </a>
-  </nav>
+  <header style="text-align: center;">
+    <h1>Security and Privacy in Machine Learning</h1>
+    <p>
+      Sharif University of Technology, Iran<br>
+      CE Department<br>
+      Fall 2025
+    </p>
+  </header>
 
-  <h1>Security and Privacy in ML</h1>
-  <p>Sharif University of Technology</p>
-  <p>Instructor: [Your name] | Semester: [Semester and year]</p>
-
-  <h2>Course Overview</h2>
   <p>
-    This course explores security and privacy challenges in
-    machine learning, including attacks, defenses, and evaluation.
+    Welcome to the public page for the course on Security and Privacy in
+    Machine Learning (SPML). The main objectives of the course are to
+    introduce students to the principles of security and privacy in machine
+    learning. The students become familiar with the vulnerabilities of
+    machine learning in the training and inference phases and the methods
+    to improve the robustness and privacy of machine learning models.
   </p>
 
-  <h2>Course Information</h2>
+  <h2>Course Logistics</h2>
   <ul>
-    <li>Prerequisites: [Add prerequisites]</li>
-    <li>Class time and location: [Add details]</li>
-    <li>Office hours: [Add details]</li>
-    <li>Teaching assistants: [Add names]</li>
-    <li>Grading policy: [Add policy]</li>
+    <li><strong>Time:</strong> Sun. &amp; Tues. 10:30–12:00</li>
+    <li>
+      <strong>Location:</strong> Room 103 &amp;
+      <a href="https://vc.sharif.edu/ch/amsadeghzadeh">
+        vc.sharif.edu/ch/amsadeghzadeh
+      </a>
+    </li>
+    <li>
+      <strong>Contact:</strong> Announcements and all course-related
+      questions will happen on the Quera forum. All official announcements
+      and communication will happen over the Telegram channel.
+    </li>
+  </ul>
+  <p>
+    For external enquiries, emergencies, or personal matters that you
+    don’t wish to put in a private post, you can email me at
+    <a href="mailto:sadeghzadeh@sharif.edu">sadeghzadeh@sharif.edu</a>.
+  </p>
+
+  <h2>Instructor</h2>
+  <p><strong>Amir Mahdi Sadeghzadeh</strong></p>
+  <ul>
+    <li><strong>Office:</strong> CE-718</li>
+    <li><strong>Lab:</strong> TSAIL (CE-503)</li>
+    <li><strong>Office Hours:</strong> By appointment (through email)</li>
+    <li>
+      <strong>Email:</strong>
+      <a href="mailto:amsadeghzadeh@gmail.com">amsadeghzadeh@gmail.com</a>
+    </li>
+    <li>
+      <strong>URL:</strong>
+      <a href="https://amsadeghzadeh.github.io">
+        amsadeghzadeh.github.io
+      </a>
+    </li>
+  </ul>
+
+  <h2>Course Staff</h2>
+  <p>
+    <strong>Arian Komaei Koma</strong> (Head Course Assistant)<br>
+    <strong>Email:</strong>
+    <a href="mailto:ariankomaei@gmail.com">ariankomaei@gmail.com</a>
+  </p>
+
+  <h2>Course Pages</h2>
+  <ul>
+    <li>
+      <a href="https://spml2025.github.io">spml2025.github.io</a>
+      — Course information, syllabus, and materials.
+    </li>
+    <li>
+      <strong>Quera</strong> (get the password from course staff)
+      — Announcements, assignments, and all course-related questions.
+    </li>
+  </ul>
+
+  <h2>Main References</h2>
+  <p>
+    The main references for the course are many research papers in
+    top-tier conferences and journals in computer security (SP, CCS,
+    USENIX Security, EuroSP) and machine learning (NeurIPS, ICLR, ICML,
+    CVPR, ECCV).
+  </p>
+
+  <h2>Grading Policy</h2>
+  <ul>
+    <li>Assignments: 30%</li>
+    <li>4 Quizzes: 10%</li>
+    <li>Presentation: 10%</li>
+    <li>Mid-term: 20%</li>
+    <li>Final: 30%</li>
+  </ul>
+
+  <h2>Course Policy</h2>
+  <p>
+    This course considers topics involving personal and public privacy
+    and security. As part of this investigation we will cover technologies
+    whose abuse may infringe on the rights of others. As an instructor,
+    I rely on the ethical use of these technologies. Unethical use may
+    include circumvention of existing security or privacy measurements
+    for any purpose, or the dissemination, promotion, or exploitation of
+    vulnerabilities of these services. Exceptions to these guidelines
+    may occur in the process of reporting vulnerabilities through public
+    and authoritative channels. Any activity outside the letter or spirit
+    of these guidelines will be reported to the proper authorities and
+    may result in dismissal from the class. When in doubt, please contact
+    the instructor for advice. Do not undertake any action which could
+    be perceived as technology misuse anywhere and/or under any
+    circumstances unless you have received explicit permission from
+    Dr. Sadeghzadeh.
+  </p>
+
+  <h2>Academic Honesty</h2>
+  <p>Sharif CE Department Honor Code (please read it carefully!)</p>
+
+  <h2>Homework Submission</h2>
+  <p>
+    Submit your answers in a <code>.pdf</code> or <code>.zip</code> file
+    on the course page on the Quera website, with the following format:
+    <code>HW[HW#]-[FamilyName]-[std#]</code>
+    (for example, <code>HW3-Hoseini-401234567</code>).
+  </p>
+
+  <h2>Homework Policy</h2>
+  <p><strong>Important:</strong></p>
+  <ul>
+    <li>All theory homework must be handwritten.</li>
+    <li>
+      Do not submit LaTeX or Word-formatted documents for theory
+      assignments — these will not be accepted.
+    </li>
+    <li>
+      If any part of your homework is detected to be written by AI,
+      you will receive no score for that assignment.
+    </li>
+    <li>
+      You may use AI tools for assistance (e.g., brainstorming ideas,
+      clarifying concepts, or debugging), but you must not include
+      AI-generated text directly in your submission. All submitted work
+      should be written in your own words and understanding.
+    </li>
+  </ul>
+
+  <h2>Late Policy</h2>
+  <ul>
+    <li>All students have 15 free late days for the assignments.</li>
+    <li>You may use up to 4 late days per assignment with no penalty.</li>
+    <li>
+      Once you have exhausted your free late days, we will deduct
+      a late penalty of 20% per additional late day.
+    </li>
   </ul>
 
   <h2>Schedule</h2>
