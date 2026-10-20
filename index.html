@@ -404,6 +404,64 @@
       color: var(--navy);
     }
 
+    /* Compact syllabus with readable lecture and paper lists. */
+    #course-syllabus .table-wrapper { overflow: visible; }
+    .schedule-table { min-width: 0; table-layout: fixed; }
+    .schedule-table thead th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    .schedule-table thead th:first-child { width: 15%; border-top-left-radius: var(--radius); }
+    .schedule-table thead th:nth-child(2) { width: 30%; }
+    .schedule-table thead th:nth-child(3) { width: 42%; }
+    .schedule-table thead th:last-child { width: 13%; border-top-right-radius: var(--radius); }
+    .schedule-table td { width: auto; white-space: normal; font-weight: 400; color: var(--text); overflow-wrap: anywhere; }
+    .schedule-table .lecture-date { display: block; color: var(--navy); font-weight: 650; }
+    .date-detail { display: block; margin-top: 4px; color: var(--muted); font-size: 0.8rem; }
+    .lecture-title { display: block; color: var(--navy); font-weight: 650; line-height: 1.5; }
+    .lecture-summary { display: block; margin-top: 8px; color: var(--muted); }
+    .lecture-links { display: block; margin-top: 8px; }
+    .reading-list { margin: 0; padding-left: 18px; list-style: disc; font-size: 0.8rem; }
+    .reading-list li { padding: 0; }
+    .reading-list li + li { margin-top: 8px; border-top: 0; }
+    .reading-list .reading-label { list-style: none; margin-left: -18px; border: 0; padding-top: 0; }
+    .reading-label strong { margin: 0; }
+    .module-divider th {
+      background: #eaf0f7;
+      color: var(--navy);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+      font-weight: 650;
+      padding: 14px 16px;
+    }
+    .schedule-table tbody tr:last-child td { border-bottom: 1px solid var(--border); }
+
+    @media (max-width: 700px) {
+      .schedule-table, .schedule-table tbody, .schedule-table tr,
+      .schedule-table td, .schedule-table .module-divider th { display: block; width: 100%; }
+      .schedule-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+      .schedule-table .lecture-row { padding: 16px; border-bottom: 1px solid var(--border); }
+      .schedule-table .lecture-row td { padding: 8px 0; border: 0; }
+      .schedule-table td[data-label="Readings"]::before,
+      .schedule-table td[data-label="Assignments"]::before {
+        content: attr(data-label);
+        display: block;
+        margin-bottom: 8px;
+        color: var(--muted);
+        font-size: 0.72rem;
+        font-weight: 650;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .schedule-table .empty-assignment { display: none; }
+      .schedule-table .module-divider th { box-sizing: border-box; }
+    }
+    @media print {
+      .schedule-table thead th { position: static; }
+      .module-divider { break-after: avoid; }
+    }
+
     .module-list {
       display: grid;
       gap: 20px;
@@ -663,364 +721,192 @@
 <div
   class="table-wrapper"
   role="region"
-  aria-label="Course schedule — scroll horizontally to see all columns"
+  aria-label="Course schedule"
   tabindex="0"
 >
-  <table>
-    <thead>
-      <tr>
-        <th scope="col">Date</th>
-        <th scope="col">Day</th>
-        <th scope="col">Topic</th>
-        <th scope="col">Lecture</th>
-        <th scope="col">Slides</th>
-        <th scope="col">Reading</th>
-        <th scope="col">Homework and Project</th>
-      </tr>
-    </thead>
+  <table class="schedule-table" aria-label="Lecture schedule">
+    <thead><tr>
+      <th scope="col">Date</th><th scope="col">Lecture</th>
+      <th scope="col">Readings</th><th scope="col">Assignments</th>
+    </tr></thead>
     <tbody>
-      <tr>
-        <td>Oct 25 (3 Aban)</td>
-        <td>Sunday</td>
-        <td>Course Intro &amp; Overview</td>
-        <td>Course Scope, Principles &amp; Motivation</td>
-        <td></td>
-        <td>Towards the Science of Security and Privacy in ML (Papernot et al.)<br>
-        Towards Guaranteed Safe AI: A Framework for Ensuring Robust and Reliable AI Systems (Dalrymple et al., 2024)</td>
-        <td></td>
+      <tr class="module-divider"><th colspan="4" scope="colgroup">Module 1: Security of Machine Learning Models</th></tr>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Oct 25</span><span class="date-detail">Sunday · 3 Aban</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Course Intro &amp; Overview</span><span class="lecture-summary">Course Scope, Principles &amp; Motivation</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>Towards the Science of Security and Privacy in ML (Papernot et al.)</li><li>Towards Guaranteed Safe AI: A Framework for Ensuring Robust and Reliable AI Systems (Dalrymple et al., 2024)</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Oct 27 (5 Aban)</td>
-        <td>Tuesday</td>
-        <td>Adversarial Examples Intro</td>
-        <td>Vulnerabilities of Deep Learning &amp; Threat Models</td>
-        <td></td>
-        <td>
-          Intriguing Properties of Neural Networks (Szegedy et al.)<br>
-          Explaining and Harnessing Adversarial Examples (Goodfellow et al.)
-        </td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Oct 27</span><span class="date-detail">Tuesday · 5 Aban</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Adversarial Examples Intro</span><span class="lecture-summary">Vulnerabilities of Deep Learning &amp; Threat Models</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>Intriguing Properties of Neural Networks (Szegedy et al.)</li><li>Explaining and Harnessing Adversarial Examples (Goodfellow et al.)</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Nov 01 (10 Aban)</td>
-        <td>Sunday</td>
-        <td>Iterative Adversarial Attacks</td>
-        <td>Projected Gradient Descent (PGD) &amp; Carlini-Wagner (C&amp;W) Attack Formulations</td>
-        <td></td>
-        <td>
-          Towards Deep Learning Models Resistant to Adversarial Attacks (Madry et al.)<br>
-          Towards Evaluating the Robustness of Neural Networks (Carlini &amp; Wagner)
-        </td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Nov 01</span><span class="date-detail">Sunday · 10 Aban</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Iterative Adversarial Attacks</span><span class="lecture-summary">Projected Gradient Descent (PGD) &amp; Carlini-Wagner (C&amp;W) Attack Formulations</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>Towards Deep Learning Models Resistant to Adversarial Attacks (Madry et al.)</li><li>Towards Evaluating the Robustness of Neural Networks (Carlini &amp; Wagner)</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Nov 03 (12 Aban)</td>
-        <td>Tuesday</td>
-        <td>Physical &amp; Universal Attacks</td>
-        <td>Universal Adversarial Perturbations &amp; Adversarial Patches</td>
-        <td></td>
-        <td>
-          Universal Adversarial Perturbations;<br>
-          Adversarial Patch (Brown et al.)
-        </td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Nov 03</span><span class="date-detail">Tuesday · 12 Aban</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Physical &amp; Universal Attacks</span><span class="lecture-summary">Universal Adversarial Perturbations &amp; Adversarial Patches</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>Universal Adversarial Perturbations;</li><li>Adversarial Patch (Brown et al.)</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Nov 08 (17 Aban)</td>
-        <td>Sunday</td>
-        <td>Black-Box Adversarial Attacks</td>
-        <td>Transferability, Query-Based Attacks &amp; Zeroth-Order Optimization</td>
-        <td></td>
-        <td>
-          Practical Black-Box Attacks;<br>
-          ZOO (Chen et al.)<br>
-          Black-box Adversarial Attacks with Limited Queries and Information
-        </td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Nov 08</span><span class="date-detail">Sunday · 17 Aban</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Black-Box Adversarial Attacks</span><span class="lecture-summary">Transferability, Query-Based Attacks &amp; Zeroth-Order Optimization</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>Practical Black-Box Attacks;</li><li>ZOO (Chen et al.)</li><li>Black-box Adversarial Attacks with Limited Queries and Information</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Nov 10 (19 Aban)</td>
-        <td>Tuesday</td>
-        <td>Obfuscated Gradients &amp; Empirical Defenses Against AEs</td>
-        <td>Gradient Masking &amp; Rigorous Robustness Evaluation</td>
-        <td></td>
-        <td>
-          Obfuscated Gradients Give a False Sense of Security (Athalye et al.)<br>
-          Towards Deep Learning Models Resistant to Adversarial Attacks
-        </td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Nov 10</span><span class="date-detail">Tuesday · 19 Aban</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Obfuscated Gradients &amp; Empirical Defenses Against AEs</span><span class="lecture-summary">Gradient Masking &amp; Rigorous Robustness Evaluation</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>Obfuscated Gradients Give a False Sense of Security (Athalye et al.)</li><li>Towards Deep Learning Models Resistant to Adversarial Attacks</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Nov 15 (24 Aban)</td>
-        <td>Sunday</td>
-        <td>Certified Robustness</td>
-        <td>Randomized Smoothing &amp; Convex Outer Adversarial Polytope</td>
-        <td></td>
-        <td>Certified Adversarial Robustness via Randomized Smoothing (Cohen et al.)</td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Nov 15</span><span class="date-detail">Sunday · 24 Aban</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Certified Robustness</span><span class="lecture-summary">Randomized Smoothing &amp; Convex Outer Adversarial Polytope</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>Certified Adversarial Robustness via Randomized Smoothing (Cohen et al.)</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Nov 17 (26 Aban)</td>
-        <td>Tuesday</td>
-        <td>Data Poisoning Attacks</td>
-        <td>Targeted Clean-Label Poisoning &amp; Bilevel Optimization</td>
-        <td></td>
-        <td>
-          BadNets (Gu et al.);<br>
-          Poison Frogs! Targeted Clean-Label Poisoning Attacks (Shafahi et al.)<br>
-          Deep Partition Aggregation (Levine &amp; Feizi)<br>
-          Targeted Backdoor Attacks on Deep Learning Systems Using Data Poisoning<br>
-          Poisoning Web-Scale Training Datasets is Practical (Carlini et al., 2023)       </td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Nov 17</span><span class="date-detail">Tuesday · 26 Aban</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Data Poisoning Attacks</span><span class="lecture-summary">Targeted Clean-Label Poisoning &amp; Bilevel Optimization</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>BadNets (Gu et al.);</li><li>Poison Frogs! Targeted Clean-Label Poisoning Attacks (Shafahi et al.)</li><li>Deep Partition Aggregation (Levine &amp; Feizi)</li><li>Targeted Backdoor Attacks on Deep Learning Systems Using Data Poisoning</li><li>Poisoning Web-Scale Training Datasets is Practical (Carlini et al., 2023)</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Nov 22 (1 Azar)</td>
-        <td>Sunday</td>
-        <td>Model Extraction Attacks &amp; Model IP &amp; Watermarking</td>
-        <td>Model Fingerprinting, Watermarking &amp; Verification</td>
-        <td></td>
-        <td>
-          High Accuracy and High Fidelity Extraction;<br>
-          Knockoff Nets (Orekondy et al.)<br>
-          Turning Weakness Into Strength: Watermarking DNNs by Backdooring<br>
-          Imitation Attacks and Defenses for Black-box Machine Translation Systems (Wallace et al., 2020)<br>
-          Stealing Part of a Production Language Model (Carlini et al., 2024)<br>
-          Scalable watermarking for identifying large language model outputs (Dathathri et al., 2024)
-        </td>
-        <td></td>
+    </tbody>
+    <tbody>
+      <tr class="module-divider"><th colspan="4" scope="colgroup">Module 2: Privacy and Model Protection</th></tr>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Nov 22</span><span class="date-detail">Sunday · 1 Azar</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Model Extraction Attacks &amp; Model IP &amp; Watermarking</span><span class="lecture-summary">Model Fingerprinting, Watermarking &amp; Verification</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>High Accuracy and High Fidelity Extraction;</li><li>Knockoff Nets (Orekondy et al.)</li><li>Turning Weakness Into Strength: Watermarking DNNs by Backdooring</li><li>Imitation Attacks and Defenses for Black-box Machine Translation Systems (Wallace et al., 2020)</li><li>Stealing Part of a Production Language Model (Carlini et al., 2024)</li><li>Scalable watermarking for identifying large language model outputs (Dathathri et al., 2024)</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Nov 24 (3 Azar)</td>
-        <td>Tuesday</td>
-        <td>Privacy Risks in ML</td>
-        <td>Membership Inference &amp; Attribute Inference Attacks</td>
-        <td></td>
-        <td>Membership Inference Attacks against Machine Learning Models (Shokri et al.)<br>
-        Text Embeddings Reveal (Almost) As Much As Text (Morris et al., 2023)<br>
-Deep Leakage from Gradients (Zhu et al., 2019)</td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Nov 24</span><span class="date-detail">Tuesday · 3 Azar</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Privacy Risks in ML</span><span class="lecture-summary">Membership Inference &amp; Attribute Inference Attacks</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>Membership Inference Attacks against Machine Learning Models (Shokri et al.)</li><li>Text Embeddings Reveal (Almost) As Much As Text (Morris et al., 2023)</li><li>Deep Leakage from Gradients (Zhu et al., 2019)</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Nov 29 (8 Azar)</td>
-        <td>Sunday</td>
-        <td>Federated Learning &amp; Gradient Leakage</td>
-        <td>Membership Inference &amp; Attribute Inference Attacks</td>
-        <td></td>
-        <td>Membership Inference Attacks From First Principles (Carlini et al., 2021)<br>
-        Do Membership Inference Attacks Work on Large Language Models? (Duan et al., 2024)</td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Nov 29</span><span class="date-detail">Sunday · 8 Azar</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Federated Learning &amp; Gradient Leakage</span><span class="lecture-summary">Membership Inference &amp; Attribute Inference Attacks</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>Membership Inference Attacks From First Principles (Carlini et al., 2021)</li><li>Do Membership Inference Attacks Work on Large Language Models? (Duan et al., 2024)</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Dec 01 (10 Azar)</td>
-        <td>Tuesday</td>
-        <td>Differential Privacy Foundations</td>
-        <td>(ε, δ)-Differential Privacy &amp; Randomized Response</td>
-        <td></td>
-        <td>The Algorithmic Foundations of Differential Privacy (Dwork &amp; Roth)</td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Dec 01</span><span class="date-detail">Tuesday · 10 Azar</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Differential Privacy Foundations</span><span class="lecture-summary">(ε, δ)-Differential Privacy &amp; Randomized Response</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>The Algorithmic Foundations of Differential Privacy (Dwork &amp; Roth)</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Dec 06 (15 Azar)</td>
-        <td>Sunday</td>
-        <td>Differential Privacy Mechanisms</td>
-        <td>Laplace, Gaussian Mechanisms &amp; Composition Theorems</td>
-        <td></td>
-        <td>
-          The Algorithmic Foundations of Differential Privacy;<br>
-          Renyi DP (Mironov)
-        </td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Dec 06</span><span class="date-detail">Sunday · 15 Azar</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Differential Privacy Mechanisms</span><span class="lecture-summary">Laplace, Gaussian Mechanisms &amp; Composition Theorems</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>The Algorithmic Foundations of Differential Privacy;</li><li>Renyi DP (Mironov)</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Dec 08 (17 Azar)</td>
-        <td>Tuesday</td>
-        <td>Private Deep Learning</td>
-        <td>DP-SGD &amp; PATE (Private Aggregation of Teacher Ensembles)</td>
-        <td></td>
-        <td>
-          Deep Learning with DP (Abadi et al.);<br>
-          Semi-supervised Transfer (Papernot et al.)
-        </td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Dec 08</span><span class="date-detail">Tuesday · 17 Azar</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Private Deep Learning</span><span class="lecture-summary">DP-SGD &amp; PATE (Private Aggregation of Teacher Ensembles)</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>Deep Learning with DP (Abadi et al.);</li><li>Semi-supervised Transfer (Papernot et al.)</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Dec 13 (22 Azar)</td>
-        <td>Sunday</td>
-        <td>Introduction to Large Language models and Alignment</td>
-        <td>Autoregressive Language Modeling, Pretraining, In-Context Learning &amp; Alignment Objectives</td>
-        <td></td>
-        <td>
-          Language Models are Few-Shot Learners (Brown et al., 2020)<br>
-          Training language models to follow instructions with human feedback (Ouyang et al., 2022)<br>
-          Constitutional AI: Harmlessness from AI Feedback (Bai et al., 2022)
-        </td>
-        <td></td>
+    </tbody>
+    <tbody>
+      <tr class="module-divider"><th colspan="4" scope="colgroup">Module 3: Safety and Security of LLMs and AI Agents</th></tr>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Dec 13</span><span class="date-detail">Sunday · 22 Azar</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Introduction to Large Language models and Alignment</span><span class="lecture-summary">Autoregressive Language Modeling, Pretraining, In-Context Learning &amp; Alignment Objectives</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>Language Models are Few-Shot Learners (Brown et al., 2020)</li><li>Training language models to follow instructions with human feedback (Ouyang et al., 2022)</li><li>Constitutional AI: Harmlessness from AI Feedback (Bai et al., 2022)</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Dec 15 (24 Azar)</td>
-        <td>Tuesday</td>
-        <td>RLHF</td>
-        <td>Supervised Fine-Tuning, Preference-Based Reward Modeling &amp; KL-Regularized Policy Optimization</td>
-        <td></td>
-        <td>
-          Fine-Tuning Language Models from Human Preferences (Ziegler et al., 2019)<br>
-          Training language models to follow instructions with human feedback (Ouyang et al., 2022)<br>
-          Direct Preference Optimization: Your Language Model is Secretly a Reward Model 
-        </td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Dec 15</span><span class="date-detail">Tuesday · 24 Azar</span></td>
+        <td data-label="Lecture"><span class="lecture-title">RLHF</span><span class="lecture-summary">Supervised Fine-Tuning, Preference-Based Reward Modeling &amp; KL-Regularized Policy Optimization</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>Fine-Tuning Language Models from Human Preferences (Ziegler et al., 2019)</li><li>Training language models to follow instructions with human feedback (Ouyang et al., 2022)</li><li>Direct Preference Optimization: Your Language Model is Secretly a Reward Model</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Dec 20 (29 Azar)</td>
-        <td>Sunday</td>
-        <td>LLM safety alignment and jailbreaking</td>
-        <td>Safety Training, Refusal Behavior &amp; Transferable Adversarial Prompts</td>
-        <td></td>
-        <td>
-          Jailbroken: How Does LLM Safety Training Fail? (Wei et al., 2023)<br>
-          Universal and Transferable Adversarial Attacks on Aligned Language Models (Zou et al., 2023)<br>
-          <strong>Recommended:</strong><br>
-          Are aligned neural networks adversarially aligned? (Carlini et al., 2023)<br>
-          AutoPrompt: Eliciting Knowledge from Language Models with Automatically Generated Prompts
-        </td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Dec 20</span><span class="date-detail">Sunday · 29 Azar</span></td>
+        <td data-label="Lecture"><span class="lecture-title">LLM safety alignment and jailbreaking</span><span class="lecture-summary">Safety Training, Refusal Behavior &amp; Transferable Adversarial Prompts</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>Jailbroken: How Does LLM Safety Training Fail? (Wei et al., 2023)</li><li>Universal and Transferable Adversarial Attacks on Aligned Language Models (Zou et al., 2023)</li><li class="reading-label"><strong>Recommended:</strong></li><li>Are aligned neural networks adversarially aligned? (Carlini et al., 2023)</li><li>AutoPrompt: Eliciting Knowledge from Language Models with Automatically Generated Prompts</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Dec 22 (1 Dey)</td>
-        <td>Tuesday</td>
-        <td>LLM Red-teaming</td>
-        <td>Automated Attack Search, Adaptive Multi-Turn Jailbreaks &amp; Red-Teaming Evaluation</td>
-        <td></td>
-        <td>
-          Tree of Attacks: Jailbreaking Black-Box LLMs Automatically<br>
-          X-Teaming: Multi-Turn Jailbreaks and Defenses with Adaptive Multi-Agents
-        </td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Dec 22</span><span class="date-detail">Tuesday · 1 Dey</span></td>
+        <td data-label="Lecture"><span class="lecture-title">LLM Red-teaming</span><span class="lecture-summary">Automated Attack Search, Adaptive Multi-Turn Jailbreaks &amp; Red-Teaming Evaluation</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>Tree of Attacks: Jailbreaking Black-Box LLMs Automatically</li><li>X-Teaming: Multi-Turn Jailbreaks and Defenses with Adaptive Multi-Agents</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Dec 27 (6 Dey)</td>
-        <td>Sunday</td>
-        <td>Agentic AI</td>
-        <td>Reasoning–Action Loops, Tool Use, Planning, Memory &amp; Verbal Feedback</td>
-        <td></td>
-        <td>
-          ReAct: Synergizing Reasoning and Acting in Language Models<br>
-          Toolformer: LMs Can Teach Themselves to Use Tools <br> 
-          Generative Agents: Interactive Simulacra of Human Behavior<br>
-          Tree of Thoughts: Deliberate Problem Solving with LLMs
-        </td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Dec 27</span><span class="date-detail">Sunday · 6 Dey</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Agentic AI</span><span class="lecture-summary">Reasoning–Action Loops, Tool Use, Planning, Memory &amp; Verbal Feedback</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>ReAct: Synergizing Reasoning and Acting in Language Models</li><li>Toolformer: LMs Can Teach Themselves to Use Tools</li><li>Generative Agents: Interactive Simulacra of Human Behavior</li><li>Tree of Thoughts: Deliberate Problem Solving with LLMs</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Dec 29 (8 Dey)</td>
-        <td>Tuesday</td>
-        <td>Threat Modeling</td>
-        <td>Agent Assets, Trust Boundaries, Attacker Capabilities &amp; Security Evaluation</td>
-        <td></td>
-        <td>
-          Agent Security Bench (ASB)<br>
-          Identifying the Risks of LM Agents with an LM-Emulated Sandbox (ToolEmu) -- AgentHarm: Measuring Harmfulness of LLM Agents<br>
-          Attacking Vision-Language Computer Agents via Pop-ups
-        </td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Dec 29</span><span class="date-detail">Tuesday · 8 Dey</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Threat Modeling</span><span class="lecture-summary">Agent Assets, Trust Boundaries, Attacker Capabilities &amp; Security Evaluation</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>Agent Security Bench (ASB)</li><li>Identifying the Risks of LM Agents with an LM-Emulated Sandbox (ToolEmu) -- AgentHarm: Measuring Harmfulness of LLM Agents</li><li>Attacking Vision-Language Computer Agents via Pop-ups</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Jan 03 (13 Dey)</td>
-        <td>Sunday</td>
-        <td>Prompt Injection I</td>
-        <td>Direct &amp; Indirect Prompt Injection, Instruction–Data Confusion &amp; Attack Surfaces</td>
-        <td></td>
-        <td>
-          Not What You've Signed Up For: Indirect Prompt Injection<br>
-          Formalizing and Benchmarking Prompt Injection Attacks and Defenses
-        </td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Jan 03</span><span class="date-detail">Sunday · 13 Dey</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Prompt Injection I</span><span class="lecture-summary">Direct &amp; Indirect Prompt Injection, Instruction–Data Confusion &amp; Attack Surfaces</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>Not What You've Signed Up For: Indirect Prompt Injection</li><li>Formalizing and Benchmarking Prompt Injection Attacks and Defenses</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Jan 05 (15 Dey)</td>
-        <td>Tuesday</td>
-        <td>Prompt Injection II</td>
-        <td>Tool-Integrated Injection Attacks, Adaptive Adversaries &amp; Benchmark-Based Evaluation</td>
-        <td></td>
-        <td>
-          InjecAgent: Benchmarking Indirect Prompt Injections in Tool-Integrated Agents<br>
-          AgentDojo: A Dynamic Environment to Evaluate Attacks and Defenses
-        </td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Jan 05</span><span class="date-detail">Tuesday · 15 Dey</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Prompt Injection II</span><span class="lecture-summary">Tool-Integrated Injection Attacks, Adaptive Adversaries &amp; Benchmark-Based Evaluation</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>InjecAgent: Benchmarking Indirect Prompt Injections in Tool-Integrated Agents</li><li>AgentDojo: A Dynamic Environment to Evaluate Attacks and Defenses</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Jan 10 (20 Dey)</td>
-        <td>Sunday</td>
-        <td>Poisoning Memory, State, and Persistent Attacks</td>
-        <td>Memory &amp; Knowledge-Base Poisoning, Agent Backdoors &amp; Cross-Session Persistence</td>
-        <td></td>
-        <td>
-          AgentPoison: Red-Teaming LLM Agents via Poisoning Memory or Knowledge Bases<br>
-          Watch Out for Your Agents! Backdoor Threats to LLM-Based Agents<br>
-          Poisoning Language Models During Instruction Tuning 
-        </td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Jan 10</span><span class="date-detail">Sunday · 20 Dey</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Poisoning Memory, State, and Persistent Attacks</span><span class="lecture-summary">Memory &amp; Knowledge-Base Poisoning, Agent Backdoors &amp; Cross-Session Persistence</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>AgentPoison: Red-Teaming LLM Agents via Poisoning Memory or Knowledge Bases</li><li>Watch Out for Your Agents! Backdoor Threats to LLM-Based Agents</li><li>Poisoning Language Models During Instruction Tuning</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Jan 12 (22 Dey)</td>
-        <td>Tuesday</td>
-        <td>Tools, Privileges, and Authorization</td>
-        <td>Tool-Interface Threats, Least Privilege, Authorization Boundaries &amp; Capability-Based Controls</td>
-        <td></td>
-        <td>
-          Model Context Protocol (MCP): Landscape and Security Threats<br>
-          Defeating Prompt Injections by Design (CaMeL)
-        </td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Jan 12</span><span class="date-detail">Tuesday · 22 Dey</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Tools, Privileges, and Authorization</span><span class="lecture-summary">Tool-Interface Threats, Least Privilege, Authorization Boundaries &amp; Capability-Based Controls</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>Model Context Protocol (MCP): Landscape and Security Threats</li><li>Defeating Prompt Injections by Design (CaMeL)</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Jan 17 (27 Dey)</td>
-        <td>Sunday</td>
-        <td>Multi-Agent Security</td>
-        <td>Attack Propagation, Compromised Agents &amp; Resilient Multi-Agent Collaboration</td>
-        <td></td>
-        <td>
-          Agent Smith: A Single Image Can Jailbreak One Million Multimodal Agents<br>
-          On the Resilience of LLM-Based Multi-Agent Collaboration with Faulty Agents
-        </td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Jan 17</span><span class="date-detail">Sunday · 27 Dey</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Multi-Agent Security</span><span class="lecture-summary">Attack Propagation, Compromised Agents &amp; Resilient Multi-Agent Collaboration</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>Agent Smith: A Single Image Can Jailbreak One Million Multimodal Agents</li><li>On the Resilience of LLM-Based Multi-Agent Collaboration with Faulty Agents</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Jan 19 (29 Dey)</td>
-        <td>Tuesday</td>
-        <td>Defenses I: Architecture</td>
-        <td>Execution Isolation, Trust Separation &amp; Communication Firewalls</td>
-        <td></td>
-        <td>
-          The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against Llm Jailbreaks and Prompt Injections<br>
-          IsolateGPT: An Execution Isolation Architecture for LLM-Based Agentic Systems<br>
-          Firewalls to Secure Dynamic LLM Agentic Networks
-        </td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Jan 19</span><span class="date-detail">Tuesday · 29 Dey</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Defenses I: Architecture</span><span class="lecture-summary">Execution Isolation, Trust Separation &amp; Communication Firewalls</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against Llm Jailbreaks and Prompt Injections</li><li>IsolateGPT: An Execution Isolation Architecture for LLM-Based Agentic Systems</li><li>Firewalls to Secure Dynamic LLM Agentic Networks</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-      <tr>
-        <td>Jan 26 (6 Bahman)</td>
-        <td>Tuesday</td>
-        <td>Defenses II: Model and Runtime</td>
-        <td>Structured Queries, Security Preference Optimization &amp; Runtime Enforcement</td>
-        <td></td>
-        <td>
-          StruQ: Defending Against Prompt Injection with Structured Queries<br>
-          SecAlign: Defending Against Prompt Injection with Preference Optimization
-        </td>
-        <td></td>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Jan 26</span><span class="date-detail">Tuesday · 6 Bahman</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Defenses II: Model and Runtime</span><span class="lecture-summary">Structured Queries, Security Preference Optimization &amp; Runtime Enforcement</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>StruQ: Defending Against Prompt Injection with Structured Queries</li><li>SecAlign: Defending Against Prompt Injection with Preference Optimization</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
-            <tr>
-        <td>Jan 31 (11 Bahman)</td>
-        <td>Sunday</td>
-        <td>Unlearning</td>
-        <td>Unlearning (and why it's hard)</td>
-        <td></td>
-        <td>
-          Machine Unlearning<br>
-          Machine Unlearning in 2024 (Liu) <br>
-          Machine Unlearning Doesn't Do What You Think: Lessons for Generative AI Policy, Research, and Practice (A. Feder Cooper et al., 2024)
-        </td>
-        <td></td>
+    </tbody>
+    <tbody>
+      <tr class="module-divider"><th colspan="4" scope="colgroup">Module 2 revisited: Machine Unlearning</th></tr>
+      <tr class="lecture-row">
+        <td data-label="Date"><span class="lecture-date">Jan 31</span><span class="date-detail">Sunday · 11 Bahman</span></td>
+        <td data-label="Lecture"><span class="lecture-title">Unlearning</span><span class="lecture-summary">Unlearning (and why it's hard)</span></td>
+        <td data-label="Readings"><ul class="reading-list"><li>Machine Unlearning</li><li>Machine Unlearning in 2024 (Liu)</li><li>Machine Unlearning Doesn't Do What You Think: Lessons for Generative AI Policy, Research, and Practice (A. Feder Cooper et al., 2024)</li></ul></td>
+        <td data-label="Assignments" class="empty-assignment"></td>
       </tr>
     </tbody>
   </table>
